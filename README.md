@@ -78,7 +78,7 @@ Built for high-volume, messy transactional CSV data where upstream quality is un
 
 **Amazon QuickSight** connects to `bookings.daily_bookings_fact` for executive-style KPIs — booking volume, confirmed revenue, cancellation rate by channel, city and chain concentration, stay-length distribution, lead-time analysis, and payment method mix.
 
-[View Dashboard PDF](./Booking_Performance__Dashboard.pdf)
+[View Dashboard PDF](./Booking_Performance_Dashboard.pdf)
 
 ---
 
