@@ -1,10 +1,11 @@
 # Booking Event-Driven Data Pipeline
 
-An event-driven batch ingestion pipeline on AWS that automatically detects when daily booking files are uploaded to **Amazon S3**, orchestrates metadata cataloging and a **PySpark ETL** job through **AWS Step Functions**, enforces **data quality validation** with a circuit-breaker mechanism, enriches raw bookings against dimension tables in a star schema, and loads curated facts into **Amazon Redshift** — with **SNS** alerts on every pipeline success or failure.
+An event-driven batch ingestion pipeline on AWS that simulates how online travel platforms like **Booking.com, Expedia, Agoda, and MakeMyTrip** process **daily hotel booking transactions**. In a real-world scenario, the upstream booking platform's nightly export job dumps confirmed reservations, cancellations, modifications, and no-shows as a flat file into S3. This pipeline automates everything that happens next — detecting the file arrival, validating data quality, enriching bookings with hotel and channel metadata, and loading a curated star-schema fact table into **Amazon Redshift** for revenue analytics, cancellation analysis, channel performance, and executive dashboards.
 
-Built for high-volume, messy transactional CSV data where upstream quality is unpredictable. The pipeline validates every record, quarantines failures for investigation, and halts the load entirely when error rates breach a configurable threshold — ensuring the warehouse stays trustworthy for downstream analytics and dashboards.
+File arrivals are detected through **CloudTrail + EventBridge**, orchestration runs via **AWS Step Functions** (cataloging + **PySpark ETL** job), a **circuit-breaker** halts the load when error rates spike, bad records are quarantined for investigation, and **SNS** alerts fire on every pipeline success or failure — ensuring the warehouse stays trustworthy as the single source of truth for downstream analytics.
 
 ---
+
 
 ## Architecture
 
@@ -46,7 +47,7 @@ Built for high-volume, messy transactional CSV data where upstream quality is un
 | Warehouse | **Amazon Redshift** — star schema (`properties_dim`, `booking_channels_dim`, `daily_bookings_fact`) |
 | Alerts | **Amazon SNS** — separate topics for pipeline success and failure notifications |
 | Security | **IAM** roles (least-privilege per service), **VPC** security groups, optional **Secrets Manager** for Redshift credentials |
-| Analytics | **Amazon QuickSight** (optional) — dashboards on the curated fact table |
+| Analytics | **Amazon QuickSight** dashboards on the curated fact table |
 
 ---
 
@@ -78,7 +79,11 @@ Built for high-volume, messy transactional CSV data where upstream quality is un
 
 **Amazon QuickSight** connects to `bookings.daily_bookings_fact` for executive-style KPIs — booking volume, confirmed revenue, cancellation rate by channel, city and chain concentration, stay-length distribution, lead-time analysis, and payment method mix.
 
-[View Dashboard PDF](./Booking_Performance_Dashboard.pdf)
+
+![Booking Performance Dashboard](./Dashboard.png)
+
+[View Full Dashboard (PDF)](./Booking_Performance__Dashboard.pdf)
+
 
 ---
 
@@ -101,5 +106,5 @@ Built for high-volume, messy transactional CSV data where upstream quality is un
 
 **Osama Mustafa**
 
-- LinkedIn: [your-linkedin-url]
-- GitHub: [your-github-url]
+- LinkedIn: [https://www.linkedin.com/in/osama-mustafa-526bb6168/]
+- GitHub: [https://github.com/OsamaMustafa32]
