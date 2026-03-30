@@ -1,0 +1,9 @@
+channel_id,channel_name,channel_type
+1,Website - Desktop,Direct
+2,Mobile App - iOS,Direct
+3,Mobile App - Android,Direct
+4,Google Hotels,Metasearch
+5,TripAdvisor,Metasearch
+6,Affiliate Network,Affiliate
+7,Corporate Portal,Corporate
+8,Call Center,Direct
